@@ -14,6 +14,47 @@ var products=[];
 var localStrageGet =JSON.parse(localStorage.getItem('productList'));
 var deleteAll = document.getElementById('deleteAll');
 var currentIndex ; // global varriable for using as global from more than function ( to take index from getProduct function to updateFunction)
+var rejexTitleMessage = document.getElementById('rejexTitleMessage');
+var rejexPriceMessage = document.getElementById('rejexPriceMessage');
+var errorMessage = document.getElementById('errorMessage');
+
+
+titleInput.onkeyup=function(){
+    var titleRejex=/^[A-Z][a-z]{2,10}\s?$/;
+    console.log(titleRejex.test(titleInput.value));
+    if(titleRejex.test(titleInput.value))
+    {
+        titleInput.classList.add('is-valid')
+        titleInput.classList.remove('is-invalid')
+        rejexTitleMessage.classList.add('d-none')
+
+    }else{
+        titleInput.classList.add('is-invalid')
+        titleInput.classList.remove('is-valid')
+        rejexTitleMessage.classList.remove('d-none')
+    }
+
+}
+
+priceInput.onkeyup = function (){
+    var priceRejex = /^[0-9]{1,5}$/;
+
+    if (priceRejex.test(priceInput.value)) {
+        priceInput.classList.add('is-valid');
+        priceInput.classList.remove('is-invalid');
+        rejexPriceMessage.classList.replace('d-block','d-none')
+
+
+    
+    } else {
+        priceInput.classList.add('is-invalid');
+        priceInput.classList.remove('is-valid');
+        rejexPriceMessage.classList.replace('d-none','d-block')
+
+    
+    }
+    
+}
 
 
 
@@ -33,14 +74,55 @@ function localStorageSet() {
 
 
 addBtn.onclick = function (){
-    if(addBtn.innerHTML == 'Add'){
-        addProduct()
-      }
-       else{
-     updateProduct()
-      }
+    if(titleInput.value != '' 
+    && priceInput.value !='' 
+    && taxesInput.value != '' 
+    && adsInput.value != ''
+   && discountInput.value != '' 
+   && categoryInput.value != ''
+   && products.count < 100 )
+    {
+        errorMessage.classList.replace('d-block','d-none')
+        titleInput.classList.add('is-valid')
+        titleInput.classList.remove('is-invalid')
+        priceInput.classList.add('is-valid')
+        priceInput.classList.remove('is-invalid')
+        taxesInput.classList.add('is-valid')
+        taxesInput.classList.remove('is-invalid')
+        adsInput.classList.add('is-valid')
+        adsInput.classList.remove('is-invalid')
+        discountInput.classList.add('is-valid')
+        discountInput.classList.remove('is-invalid')
+        categoryInput.classList.add('is-valid')
+        categoryInput.classList.remove('is-invalid')
+
+
+        if(addBtn.innerHTML == 'Add'){
+            addProduct()
+          }
+           else{
+         updateProduct()
+          }
+          clearData()
+
+    }else{
+        errorMessage.classList.replace('d-none','d-block')
+        titleInput.classList.remove('is-valid')
+         titleInput.classList.add('is-invalid')
+        priceInput.classList.remove('is-valid')
+         priceInput.classList.add('is-invalid')
+        taxesInput.classList.remove('is-valid')
+         taxesInput.classList.add('is-invalid')
+        adsInput.classList.remove('is-valid')
+         adsInput.classList.add('is-invalid')
+        discountInput.classList.remove('is-valid')
+         discountInput.classList.add('is-invalid')
+        categoryInput.classList.remove('is-valid')
+         categoryInput.classList.add('is-invalid')
+
+    }
+
       displayData()
-      clearData()
       getTotalPrice()
 
       }
@@ -244,3 +326,27 @@ searchInput.onkeyup = function(){
     document.getElementById('tableBody').innerHTML=cartona;
 
 }
+
+
+
+
+// let array1 = ['hazem',8633,'mohamed','samer',2,5,88,33,55,'abdalahh',56 , 'sayed']
+// let array2 = ['red','blue','green']
+
+// for (let i = 0; i < array1.length; i++) {
+
+//     if (typeof array1[i] ==='number' ) {
+//         continue;
+//     }
+//     console.log(array1[i]); 
+
+// }
+
+
+// let a = 15;
+// let b = 30;
+// setTimeout(() => {
+// console.log(a, b);
+// }, 0);
+// [b, a] = [a, b];
+// console.log(a, b);
