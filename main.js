@@ -73,59 +73,32 @@ function localStorageSet() {
 }
 
 
-addBtn.onclick = function (){
-    if(titleInput.value != '' 
-    && priceInput.value !='' 
-    && taxesInput.value != '' 
-    && adsInput.value != ''
-   && discountInput.value != '' 
-   && categoryInput.value != ''
-   && products.count < 100 )
-    {
-        errorMessage.classList.replace('d-block','d-none')
-        titleInput.classList.add('is-valid')
-        titleInput.classList.remove('is-invalid')
-        priceInput.classList.add('is-valid')
-        priceInput.classList.remove('is-invalid')
-        taxesInput.classList.add('is-valid')
-        taxesInput.classList.remove('is-invalid')
-        adsInput.classList.add('is-valid')
-        adsInput.classList.remove('is-invalid')
-        discountInput.classList.add('is-valid')
-        discountInput.classList.remove('is-invalid')
-        categoryInput.classList.add('is-valid')
-        categoryInput.classList.remove('is-invalid')
-
-
-        if(addBtn.innerHTML == 'Add'){
-            addProduct()
-          }
-           else{
-         updateProduct()
-          }
-          clearData()
-
-    }else{
-        errorMessage.classList.replace('d-none','d-block')
-        titleInput.classList.remove('is-valid')
-         titleInput.classList.add('is-invalid')
-        priceInput.classList.remove('is-valid')
-         priceInput.classList.add('is-invalid')
-        taxesInput.classList.remove('is-valid')
-         taxesInput.classList.add('is-invalid')
-        adsInput.classList.remove('is-valid')
-         adsInput.classList.add('is-invalid')
-        discountInput.classList.remove('is-valid')
-         discountInput.classList.add('is-invalid')
-        categoryInput.classList.remove('is-valid')
-         categoryInput.classList.add('is-invalid')
-
+addBtn.onclick = function () {
+    if (titleInput.value != '' 
+        && priceInput.value != '' 
+        && taxesInput.value != '' 
+        && adsInput.value != ''
+        && discountInput.value != '' 
+        && categoryInput.value != '' 
+        && products.length < 100) {
+        
+        errorMessage.classList.replace('d-block', 'd-none');
+        
+        if (addBtn.innerHTML == 'Add') {
+            addProduct();
+        } else {
+            updateProduct();
+        }
+        
+        clearData();
+    } else {
+        errorMessage.classList.replace('d-none', 'd-block');
     }
 
-      displayData()
-      getTotalPrice()
+    displayData();
+    getTotalPrice();
+};
 
-      }
 
 
 
